@@ -1,7 +1,6 @@
 {
     "name": "getfivestars/php-sdk",
     "description": "GetFiveStars PHP SDK",
-    "varsion": "1.0.0",
     "autoload": {
         "psr-0" : {
             "GetFiveStars\\Api" : "src"
