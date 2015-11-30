@@ -1,8 +1,12 @@
 {
     "name": "getfivestars/php-sdk",
+    "description": "GetFiveStars PHP SDK",
     "autoload": {
         "psr-0" : {
             "GetFiveStars\\Api" : "src"
         }
+    },
+     "require": {
+        "php": ">=5.3.0",
     }
 } 
