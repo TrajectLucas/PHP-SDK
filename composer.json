@@ -1,0 +1,8 @@
+{
+    "name": "getfivestars/php-sdk",
+    "autoload": {
+        "psr-0" : {
+            "GetFiveStars\\Api" : "src"
+        }
+    }
+} 
