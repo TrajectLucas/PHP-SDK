@@ -82,4 +82,19 @@ class Response {
         return $this->response;
     }
 
+    /**
+     * Get response value
+     * 
+     * @param string $name
+     * 
+     * @return string
+     */
+    function get($name) {
+        if (isset($this->response[$name])) {
+            return $this->response[$name];
+        }
+
+        return null;
+    }
+
 }
