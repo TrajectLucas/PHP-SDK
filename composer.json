@@ -1,20 +1,26 @@
 {
-    "name": "getfivestars/php-sdk",
-    "description": "GetFiveStars PHP SDK",
-    "license": "MIT",
-    "keywords": ["GetFiveStars", "PHP", "SDK", "API"],
-    "authors": [
-        {
-            "name": "GetFiveStars.com",
-            "email": "support@getfivestars.com"
-        }
-    ],
-    "autoload": {
-        "psr-0": {
-            "GetFiveStars\\Api": "src"
-        }
-    },
-    "require": {
-        "php": ">=5.3.0"
+  "name": "gatherup/php-sdk",
+  "description": "GatherUp PHP SDK",
+  "license": "MIT",
+  "keywords": [
+    "GatherUp",
+    "PHP",
+    "SDK",
+    "API"
+  ],
+  "authors": [
+    {
+      "name": "GatherUp.com",
+      "email": "support@gatherup.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "GatherUp\\SDK": "src"
+    }
+  },
+  "require": {
+    "php": ">=5.6.0",
+    "guzzlehttp/guzzle": "~6.0"
+  }
 }
