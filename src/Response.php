@@ -24,6 +24,8 @@ class Response implements ResponseInterface
      * Response constructor.
      *
      * @param string $content
+     *
+     * @throws \InvalidArgumentException
      */
     public function __construct($content)
     {

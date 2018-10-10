@@ -8,7 +8,7 @@
 
 namespace GatherUp\SDK;
 
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -17,7 +17,7 @@ use GuzzleHttp\Exception\GuzzleException;
  *
  * @package GatherUp\SDK
  */
-class Client
+class Client implements ClientInterface
 {
     /**
      * @var Credentials
@@ -25,7 +25,7 @@ class Client
     protected $credentials;
 
     /**
-     * @var ClientInterface
+     * @var HttpClientInterface
      */
     protected $client;
 
@@ -43,13 +43,13 @@ class Client
      * Client constructor.
      *
      * @param CredentialsInterface $credentials
-     * @param ClientInterface      $client
+     * @param HttpClientInterface  $client
      * @param bool                 $aggregate
      * @param string               $url
      */
     public function __construct(
         CredentialsInterface $credentials,
-        ClientInterface $client,
+        HttpClientInterface $client,
         $aggregate = true,
         $url = 'https://app.gatherup.com/api'
     ) {
