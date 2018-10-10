@@ -10,6 +10,7 @@ namespace GatherUp\SDK;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class Client
@@ -34,19 +35,27 @@ class Client
     protected $url;
 
     /**
+     * @var bool
+     */
+    protected $aggregate;
+
+    /**
      * Client constructor.
      *
      * @param CredentialsInterface $credentials
      * @param ClientInterface      $client
+     * @param bool                 $aggregate
      * @param string               $url
      */
-    function __construct(
+    public function __construct(
         CredentialsInterface $credentials,
         ClientInterface $client,
+        $aggregate = true,
         $url = 'https://app.gatherup.com/api'
     ) {
         $this->credentials = $credentials;
         $this->client      = $client;
+        $this->aggregate   = $aggregate;
         $this->url         = $url;
     }
 
@@ -54,15 +63,27 @@ class Client
      * @param RequestInterface $request
      *
      * @return ResponseInterface
+     * @throws GuzzleException
      */
     public function request(RequestInterface $request)
     {
         try {
+            $data = $request->getData();
+            if ($this->aggregate) {
+                $data['aggregateResponse'] = 1;
+            }
+
             $response = $this->client->request(
                 'POST',
                 $this->url . $request->getEndpoint(),
                 [
-                    RequestOptions::JSON => $request->getData(),
+                    RequestOptions::JSON    => $data,
+                    RequestOptions::HEADERS => [
+                        'Authorization' => 'Bearer '
+                            . $this->credentials->getClientId()
+                            . '_'
+                            . $this->credentials->getBearer(),
+                    ],
                 ]
             )->getBody()->getContents();
         } catch (\Exception $e) {
@@ -71,5 +92,4 @@ class Client
 
         return new Response($response);
     }
-
 }

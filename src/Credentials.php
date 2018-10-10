@@ -31,7 +31,7 @@ class Credentials implements CredentialsInterface
      * @param string $clientId
      * @param string $bearer
      */
-    function __construct($clientId, $bearer)
+    public function __construct($clientId, $bearer)
     {
         $this->clientId = $clientId;
         $this->bearer   = $bearer;

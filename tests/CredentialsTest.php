@@ -8,7 +8,6 @@
 
 namespace GatherUp\Tests\SDK;
 
-use GatherUp\SDK\Authenticator;
 use GatherUp\SDK\Credentials;
 use PHPUnit\Framework\TestCase;
 
@@ -19,7 +18,7 @@ use PHPUnit\Framework\TestCase;
  */
 class CredentialsTest extends TestCase
 {
-    function test()
+    public function test()
     {
         $bearer   = '123';
         $clientId = 'abc';

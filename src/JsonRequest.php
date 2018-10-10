@@ -23,7 +23,7 @@ class JsonRequest extends Request
      *
      * @throws \InvalidArgumentException
      */
-    function __construct($endpoint, $data)
+    public function __construct($endpoint, $data)
     {
         parent::__construct($endpoint, \GuzzleHttp\json_decode($data, true));
     }

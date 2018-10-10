@@ -31,7 +31,7 @@ class Request implements RequestInterface
      * @param string $endpoint
      * @param array  $data
      */
-    function __construct($endpoint, array $data)
+    public function __construct($endpoint, array $data = [])
     {
         $this->endpoint = $endpoint;
         $this->data     = $data;

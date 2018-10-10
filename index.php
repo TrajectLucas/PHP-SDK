@@ -10,10 +10,23 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use GatherUp\SDK\Client;
 use GatherUp\SDK\Credentials;
-use GatherUp\SDK\JsonRequest;
+use GatherUp\SDK\Request;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\GuzzleException;
 
-$client   = new Client(new Credentials('abc', '123'), new HttpClient());
-$response = $client->request(new JsonRequest('/test', '{}'));
+$client = new Client(
+    new Credentials(
+        'rgrg4g34h4h43h4h',
+        'ewfewgewgg23g23tg23t'
+    ),
+    new HttpClient()
+);
 
-echo $response->getBody()->getContents();
+try {
+    $response = $client->request(
+        new Request('/test')
+    );
+
+    print_r($response->getRawData());
+} catch (GuzzleException $e) {
+}
