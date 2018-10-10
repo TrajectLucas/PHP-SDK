@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: lukasz
+ * Date: 09.10.18
+ * Time: 18:45
+ */
 
 namespace GatherUp\SDK;
 
@@ -7,7 +13,7 @@ namespace GatherUp\SDK;
  *
  * @package GatherUp\SDK
  */
-class Authenticator
+class Credentials implements CredentialsInterface
 {
     /**
      * @var string
@@ -45,5 +51,19 @@ class Authenticator
     public function getBearer()
     {
         return $this->bearer;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBearerHeader()
+    {
+        return [
+            'Authorization' =>
+                'Bearer '
+                . $this->getClientId()
+                . '_'
+                . $this->getBearer(),
+        ];
     }
 }
