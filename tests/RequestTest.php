@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 10.10.18
- * Time: 20:11
- */
 
 namespace GatherUp\Tests\SDK;
 
@@ -18,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class RequestTest extends TestCase
 {
-    public function testEmpty()
+    public function testEmpty(): void
     {
         $request = new Request('');
         $this->assertEquals('', $request->getEndpoint());
@@ -26,7 +20,7 @@ class RequestTest extends TestCase
 
     }
 
-    public function testNotEmpty()
+    public function testNotEmpty(): void
     {
         $request = new Request('/test', ['demo' => 1]);
         $this->assertEquals('/test', $request->getEndpoint());

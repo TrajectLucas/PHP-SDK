@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 18:53
- */
 
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -12,7 +6,6 @@ use GatherUp\SDK\Client;
 use GatherUp\SDK\Credentials;
 use GatherUp\SDK\Request;
 use GuzzleHttp\Client as HttpClient;
-use GuzzleHttp\Exception\GuzzleException;
 
 $client = new Client(
     new Credentials(
@@ -22,11 +15,9 @@ $client = new Client(
     new HttpClient()
 );
 
-try {
-    $response = $client->request(
-        new Request('/test')
-    );
+$response = $client->request(
+    new Request('/test')
+);
 
-    print_r($response->getRawData());
-} catch (GuzzleException $e) {
-}
+print_r($response->getRawData());
+

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 17:25
- */
 
 namespace GatherUp\Tests\SDK;
 
@@ -18,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  */
 class CredentialsTest extends TestCase
 {
-    public function test()
+    public function test(): void
     {
         $bearer   = '123';
         $clientId = 'abc';

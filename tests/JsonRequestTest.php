@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 10.10.18
- * Time: 20:16
- */
 
 namespace GatherUp\Tests\SDK;
 
 use GatherUp\SDK\JsonRequest;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 /**
  * Class JsonRequestTest
@@ -18,13 +13,13 @@ use PHPUnit\Framework\TestCase;
  */
 class JsonRequestTest extends TestCase
 {
-    public function testException()
+    public function testException(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new JsonRequest('/test', '{demo');
     }
 
-    public function testSuccess()
+    public function testSuccess(): void
     {
         $request = new JsonRequest('/test', '{"demo":1}');
         $this->assertEquals('/test', $request->getEndpoint());

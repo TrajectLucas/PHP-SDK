@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 18:45
- */
 
 namespace GatherUp\SDK;
 
@@ -18,15 +12,15 @@ interface CredentialsInterface
     /**
      * @return string
      */
-    public function getClientId();
+    public function getClientId(): string;
 
     /**
      * @return string
      */
-    public function getBearer();
+    public function getBearer(): string;
 
     /**
      * @return array
      */
-    public function getBearerHeader();
+    public function getBearerHeader(): array;
 }

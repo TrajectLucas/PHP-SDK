@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 10.10.18
- * Time: 20:29
- */
 
 namespace GatherUp\Tests\SDK;
 
 use GatherUp\SDK\Response;
 use PHPUnit\Framework\TestCase;
+use InvalidArgumentException;
 
 /**
  * Class ResponseTest
@@ -18,13 +13,13 @@ use PHPUnit\Framework\TestCase;
  */
 class ResponseTest extends TestCase
 {
-    function testException()
+    function testException(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         new Response('{efeg');
     }
 
-    function testEmptyResponse()
+    function testEmptyResponse(): void
     {
         $response = new Response('{}');
         $this->assertEquals(false, $response->isSuccess());
@@ -35,7 +30,7 @@ class ResponseTest extends TestCase
         $this->assertEquals([], $response->getRawData());
     }
 
-    function testNotEmptyResponse()
+    function testNotEmptyResponse(): void
     {
         $response = new Response(
             '{"errorCode":0,"errorMessage":"Success","demo":1}'

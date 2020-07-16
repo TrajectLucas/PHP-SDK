@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 18:55
- */
 
 namespace GatherUp\SDK;
 
@@ -31,7 +25,7 @@ class Request implements RequestInterface
      * @param string $endpoint
      * @param array  $data
      */
-    public function __construct($endpoint, array $data = [])
+    public function __construct(string $endpoint, array $data = [])
     {
         $this->endpoint = $endpoint;
         $this->data     = $data;
@@ -40,7 +34,7 @@ class Request implements RequestInterface
     /**
      * @return string
      */
-    public function getEndpoint()
+    public function getEndpoint(): string
     {
         return $this->endpoint;
     }
@@ -48,7 +42,7 @@ class Request implements RequestInterface
     /**
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }

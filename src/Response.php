@@ -1,12 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 19:02
- */
 
 namespace GatherUp\SDK;
+
+use InvalidArgumentException;
+use function GuzzleHttp\json_decode;
 
 /**
  * Class Response
@@ -25,17 +22,17 @@ class Response implements ResponseInterface
      *
      * @param string $content
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function __construct($content)
     {
-        $this->data = \GuzzleHttp\json_decode($content, true);
+        $this->data = json_decode($content, true);
     }
 
     /**
      * @return array
      */
-    public function getRawData()
+    public function getRawData(): array
     {
         return $this->data;
     }
@@ -43,7 +40,7 @@ class Response implements ResponseInterface
     /**
      * @return int
      */
-    public function getCode()
+    public function getCode(): int
     {
         if (isset($this->data['errorCode'])) {
             return intval($this->data['errorCode']);
@@ -55,7 +52,7 @@ class Response implements ResponseInterface
     /**
      * @return bool
      */
-    public function isSuccess()
+    public function isSuccess(): bool
     {
         return $this->getCode() === 0;
     }
@@ -63,7 +60,7 @@ class Response implements ResponseInterface
     /**
      * @return string
      */
-    public function getMessage()
+    public function getMessage(): string
     {
         if (isset($this->data['errorMessage'])) {
             return $this->data['errorMessage'];
@@ -75,9 +72,9 @@ class Response implements ResponseInterface
     /**
      * @param string $key
      *
-     * @return mixed
+     * @return bool
      */
-    public function has($key)
+    public function has(string $key): bool
     {
         return isset($this->data[$key]);
     }
@@ -87,7 +84,7 @@ class Response implements ResponseInterface
      *
      * @return mixed|null
      */
-    public function get($key)
+    public function get(string $key)
     {
         if ($this->has($key)) {
             return $this->data[$key];

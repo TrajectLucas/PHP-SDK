@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 19:02
- */
 
 namespace GatherUp\SDK;
 
@@ -18,34 +12,34 @@ interface ResponseInterface
     /**
      * @return array
      */
-    public function getRawData();
+    public function getRawData(): array;
 
     /**
      * @return int
      */
-    public function getCode();
+    public function getCode(): int;
 
     /**
      * @return bool
      */
-    public function isSuccess();
+    public function isSuccess(): bool;
 
     /**
      * @return string
      */
-    public function getMessage();
+    public function getMessage(): string;
 
     /**
      * @param string $key
      *
-     * @return mixed
+     * @return bool
      */
-    public function has($key);
+    public function has(string $key): bool;
 
     /**
      * @param string $key
      *
      * @return mixed|null
      */
-    public function get($key);
+    public function get(string $key);
 }

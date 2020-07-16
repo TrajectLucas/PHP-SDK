@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 18:33
- */
 
 namespace GatherUp\SDK;
 
 use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\RequestOptions;
-use GuzzleHttp\Exception\GuzzleException;
+use Throwable;
 
 /**
  * Class Client
@@ -50,8 +44,8 @@ class Client implements ClientInterface
     public function __construct(
         CredentialsInterface $credentials,
         HttpClientInterface $client,
-        $aggregate = true,
-        $url = 'https://app.gatherup.com/api'
+        bool $aggregate = true,
+        string $url = 'https://app.gatherup.com/api'
     ) {
         $this->credentials = $credentials;
         $this->client      = $client;
@@ -63,9 +57,8 @@ class Client implements ClientInterface
      * @param RequestInterface $request
      *
      * @return ResponseInterface
-     * @throws GuzzleException
      */
-    public function request(RequestInterface $request)
+    public function request(RequestInterface $request): ResponseInterface
     {
         try {
             $data = $request->getData();
@@ -86,8 +79,8 @@ class Client implements ClientInterface
                     ],
                 ]
             )->getBody()->getContents();
-        } catch (\Exception $e) {
-            $response = '';
+        } catch (Throwable $e) {
+            $response = '{}';
         }
 
         return new Response($response);

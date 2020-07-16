@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 18:45
- */
 
 namespace GatherUp\SDK;
 
@@ -31,7 +25,7 @@ class Credentials implements CredentialsInterface
      * @param string $clientId
      * @param string $bearer
      */
-    public function __construct($clientId, $bearer)
+    public function __construct(string $clientId, string $bearer)
     {
         $this->clientId = $clientId;
         $this->bearer   = $bearer;
@@ -40,7 +34,7 @@ class Credentials implements CredentialsInterface
     /**
      * @return string
      */
-    public function getClientId()
+    public function getClientId(): string
     {
         return $this->clientId;
     }
@@ -48,7 +42,7 @@ class Credentials implements CredentialsInterface
     /**
      * @return string
      */
-    public function getBearer()
+    public function getBearer(): string
     {
         return $this->bearer;
     }
@@ -56,7 +50,7 @@ class Credentials implements CredentialsInterface
     /**
      * @return array
      */
-    public function getBearerHeader()
+    public function getBearerHeader(): array
     {
         return [
             'Authorization' =>

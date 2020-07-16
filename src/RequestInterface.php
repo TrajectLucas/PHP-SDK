@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 09.10.18
- * Time: 18:38
- */
 
 namespace GatherUp\SDK;
 
@@ -18,10 +12,10 @@ interface RequestInterface
     /**
      * @return string
      */
-    public function getEndpoint();
+    public function getEndpoint(): string;
 
     /**
      * @return array
      */
-    public function getData();
+    public function getData(): array;
 }

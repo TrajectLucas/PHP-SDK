@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lukasz
- * Date: 10.10.18
- * Time: 20:40
- */
 
 namespace GatherUp\Tests\SDK;
 
@@ -15,7 +9,6 @@ use GuzzleHttp\ClientInterface as HttpClientInterface;
 use Psr\Http\Message\ResponseInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
-use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class ClientTest
@@ -24,9 +17,8 @@ use GuzzleHttp\Exception\GuzzleException;
  */
 class ClientTest extends TestCase
 {
-    function test()
+    function test(): void
     {
-
         $request = $this->createMock(RequestInterface::class);
         $request->method('getData')
             ->willReturn(
@@ -53,10 +45,10 @@ class ClientTest extends TestCase
                 $this->equalTo('https://app.gatherup.com/api/test'),
                 $this->callback(
                     function ($arr) {
-                        if (! isset($arr['headers'])) {
+                        if (!isset($arr['headers'])) {
                             return false;
                         }
-                        if (! isset($arr['headers']['Authorization'])) {
+                        if (!isset($arr['headers']['Authorization'])) {
                             return false;
                         }
                         if ($arr['headers']['Authorization']
@@ -65,16 +57,16 @@ class ClientTest extends TestCase
                             return false;
                         }
 
-                        if (! isset($arr['json'])) {
+                        if (!isset($arr['json'])) {
                             return false;
                         }
-                        if (! isset($arr['json']['demo'])) {
+                        if (!isset($arr['json']['demo'])) {
                             return false;
                         }
                         if ($arr['json']['demo'] !== 1) {
                             return false;
                         }
-                        if (! isset($arr['json']['aggregateResponse'])) {
+                        if (!isset($arr['json']['aggregateResponse'])) {
                             return false;
                         }
                         if ($arr['json']['aggregateResponse'] !== 1) {
@@ -93,9 +85,6 @@ class ClientTest extends TestCase
          * @var HttpClientInterface  $httpClient
          */
         $client = new Client($credentials, $httpClient);
-        try {
-            $this->assertEquals(1, $client->request($request)->get('demo'));
-        } catch (GuzzleException $e) {
-        }
+        $this->assertEquals(1, $client->request($request)->get('demo'));
     }
 }
